@@ -1,51 +1,65 @@
-// ========== EFECTOS JAVASCRIPT PARA EL HEADER ==========
+document.addEventListener("DOMContentLoaded", function () {
 
-
-window.addEventListener('scroll', function() {
-    const header = document.querySelector('.tech-header');
-    if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-    } else {
-        header.classList.remove('scrolled');
-    }
-});
-
-
-const menuLinks = document.querySelectorAll('.nav-menu a');
-menuLinks.forEach(link => {
-    link.addEventListener('mouseenter', function(e) {
-        console.log(`🖱️ Mouse sobre: ${this.textContent.trim()}`);
+    // Scroll header
+    window.addEventListener('scroll', function() {
+        const header = document.querySelector('.tech-header');
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
     });
-    
-    // 3. Resaltar el enlace activo (según la página actual)
-    if (link.href === window.location.href) {
-        link.classList.add('active');
+
+    // MENU HAMBURGUESA
+    const toggle = document.getElementById("menu-toggle");
+    const menu = document.querySelector(".nav-menu");
+    const overlay = document.getElementById("overlay");
+
+    if (toggle && menu && overlay) {
+        toggle.addEventListener("click", () => {
+            menu.classList.toggle("show");
+            overlay.classList.toggle("show");
+        });
+
+        // cerrar al hacer click fuera
+        overlay.addEventListener("click", () => {
+            menu.classList.remove("show");
+            overlay.classList.remove("show");
+        });
     }
-});
 
+    // Links
+    const menuLinks = document.querySelectorAll('.nav-menu a');
+    menuLinks.forEach(link => {
+        link.addEventListener('mouseenter', function() {
+            console.log(`🖱️ Mouse sobre: ${this.textContent.trim()}`);
+        });
 
-console.log('%c🚀 TechStore - Header cargado con éxito!', 'color: #00d4ff; font-size: 16px; font-weight: bold;');
+        if (link.href === window.location.href) {
+            link.classList.add('active');
+        }
+    });
 
-// 5. Animación sutil del logo al cargar
-const logo = document.querySelector('.logo h1');
-if (logo) {
-    logo.style.opacity = '0';
-    logo.style.transform = 'translateX(-20px)';
-    setTimeout(() => {
-        logo.style.transition = 'all 0.6s ease';
-        logo.style.opacity = '1';
-        logo.style.transform = 'translateX(0)';
-    }, 100);
-}
+    console.log('🚀 Header cargado');
 
-
-const cartIcon = document.querySelector('.cart-icon');
-if (cartIcon) {
-    cartIcon.addEventListener('click', function() {
-        alert('🛒 Carrito de compras - Próximamente más funciones');
-        this.style.transform = 'scale(0.9)';
+    // Logo animación
+    const logo = document.querySelector('.logo h1');
+    if (logo) {
+        logo.style.opacity = '0';
+        logo.style.transform = 'translateX(-20px)';
         setTimeout(() => {
-            this.style.transform = 'scale(1)';
-        }, 200);
-    });
-}
+            logo.style.transition = 'all 0.6s ease';
+            logo.style.opacity = '1';
+            logo.style.transform = 'translateX(0)';
+        }, 100);
+    }
+
+    // Carrito
+    const cartIcon = document.querySelector('.cart-icon');
+    if (cartIcon) {
+        cartIcon.addEventListener('click', function() {
+            alert('🛒 Carrito próximamente');
+        });
+    }
+
+});
