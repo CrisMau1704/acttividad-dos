@@ -62,4 +62,13 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    // FUNCIONALIDAD Carrito de productos (cuerpo)
+    const buyButtons = document.querySelectorAll('.buy-btn');
+    buyButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const productName = this.parentElement.querySelector('h3').textContent;
+            alert(`✅ ${productName} ha sido añadido a tu carrito de TechStore.`);
+        });
+    });
+
 });
