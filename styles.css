@@ -134,6 +134,15 @@ body {
 /*estilos del footer*/
 
 .footer {
+    backdrop-filter: blur(10px);
+    padding: 1rem 2rem;
+    transition: all 0.3s ease;
+    border-top: 2px solid var(--accent);
+    background: rgba(10, 14, 39, 0.95);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    bottom: 0;
+    position: sticky;
     padding: 20px;
     text-align: center;
 }
